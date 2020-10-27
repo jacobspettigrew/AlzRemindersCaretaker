@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Alzreminder_caregiver</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">ppUUKGXynkwsUpbZRR6bij1SYvqea45AMYUj70xJ</string>
+    <string name="back4app_client_key">ufwwEJ1t3ERojL7sCNQRL1sk7MRFnwpSUBCLE3sQ</string>
+</resources>
