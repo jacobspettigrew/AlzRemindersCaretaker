@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="cancelButton" type="id" />
+    <item name="setButton" type="id" />
+    <item name="timePicker" type="id" />
+    <item name="editText" type="id" />
+</resources>
