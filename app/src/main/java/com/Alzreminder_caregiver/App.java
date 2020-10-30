@@ -68,7 +68,11 @@ public class App extends AppCompatActivity  {
                 @Override
                 public void done(ParseUser user, ParseException e) {
                     if(user != null){
+<<<<<<< Updated upstream
 
+=======
+                        
+>>>>>>> Stashed changes
                         Toast.makeText(getApplicationContext(),"Login successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(view.getContext(), MainTask.class);
                         startActivity(intent);
