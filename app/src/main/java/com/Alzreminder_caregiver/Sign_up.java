@@ -24,7 +24,9 @@ public class Sign_up extends  Activity{
 
     public void signingUp(String username, String password, String email, String firstName, String lastName){
         ParseUser user = new ParseUser();
+        //if logout forced
         user.logOut();
+
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
@@ -49,29 +51,44 @@ public class Sign_up extends  Activity{
 
     //need more testing and functinoalities here
     public void onClickedSignedUp(View view){
-        boolean passwordMatched;
+
         EditText usernameText = findViewById(R.id.username);
         EditText passwordText = findViewById(R.id.password);
         EditText passwordConfirmText = findViewById(R.id.password_confirm);
-        EditText firstName = findViewById(R.id.first_name);
-        EditText lastName = findViewById(R.id.last_name);
+        EditText firstNameText = findViewById(R.id.first_name);
+        EditText lastNameText = findViewById(R.id.last_name);
+        EditText emailText = findViewById(R.id.email_address);
 
-        if(passwordText.getText().toString().matches(passwordConfirmText.getText().toString())){
+        boolean unMatchedPassword = !(passwordText.getText().toString().matches(passwordConfirmText.getText().toString()));
+        boolean emptyUsername = usernameText.getText().toString().matches("");
+        boolean emptyEmail = emailText.getText().toString().matches("" );
+
+        //if username, email , password are empty, return false
+        boolean  emptyFields = emptyEmail || unMatchedPassword|| emptyUsername;
+
+
+        //if password empty
+/*        if(passwordText.getText().toString().matches(passwordConfirmText.getText().toString())){
             passwordMatched = false;
         }
         else {
             passwordMatched = true;
         }
-        EditText emailText = findViewById(R.id.email_address);
+        */
 
-        boolean  empty_user_pass = usernameText.getText().toString().matches("") || passwordMatched|| emailText.getText().toString().matches("" );
 
         // if the password or username is empty give a toast message otherwise proceed to login and sign up
-        if(empty_user_pass){
-            Toast.makeText(this, "username and password are required", Toast.LENGTH_SHORT).show();
+        if(emptyFields){
+            Toast.makeText(this, "Please check again", Toast.LENGTH_SHORT).show();
         }
         else {
-                signingUp(usernameText.getText().toString(),passwordText.getText().toString(), emailText.getText().toString(), firstName.getText().toString(), lastName.getText().toString());
+                String username = usernameText.getText().toString();
+                String password = passwordText.getText().toString();
+                String email = emailText.getText().toString();
+                String firstNameString = firstNameText.getText().toString();
+                String lastNameString = lastNameText.getText().toString();
+
+                signingUp(username,password, email, firstNameString, lastNameString);
                 finish();
         }
     }

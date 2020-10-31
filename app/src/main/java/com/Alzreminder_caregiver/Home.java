@@ -14,17 +14,15 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_caregiver_home);
 
         cardViewTask = findViewById(R.id.cardViewTask);
         cardViewReminder = findViewById(R.id.cardViewReminder);
-
         cardViewTask.setOnClickListener(this);
         cardViewReminder.setOnClickListener(this);
 
     }
-
-
 
     public void goToTasks(View view){
         Toast.makeText(this,"Sign Up", Toast.LENGTH_SHORT).show();

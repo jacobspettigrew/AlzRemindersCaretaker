@@ -32,9 +32,9 @@ public class App extends AppCompatActivity  {
         );
 
         setContentView(R.layout.activity_main);
-//        if(ParseUser.getCurrentUser() != null){
-//            goToMainTask();
-//        }
+        if(ParseUser.getCurrentUser() != null){
+            goToMainTask();
+        }
 
     }
 
@@ -45,22 +45,23 @@ public class App extends AppCompatActivity  {
         startActivity(intent);
     }
 
-    public void goToMainTask(View view){
+    public void goToMainTask(){
         Intent intent = new Intent(this, MainTask.class);
         startActivity(intent);
     }
 
     public void loggingIn(View view){
 
-//        ParseUser user = new ParseUser();
-//        user.logOut();
+
         EditText usernameText = findViewById(R.id.usernameLogin);
         EditText passwordText = findViewById(R.id.passwordLogin);
+        boolean emptyUsername = usernameText.getText().toString().matches("");
+        boolean emptyPassword = passwordText.getText().toString().matches("" );
 
-        boolean  empty_user_pass = usernameText.getText().toString().matches("") || passwordText.getText().toString().matches("" );
+        boolean  emptyUserPassword = emptyUsername || emptyPassword;
 
         // if the password or username is empty give a toast message otherwise proceed to login and sign up
-        if(empty_user_pass){
+        if(emptyUserPassword){
             Toast.makeText(this, "username and password are required", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -68,7 +69,6 @@ public class App extends AppCompatActivity  {
                 @Override
                 public void done(ParseUser user, ParseException e) {
                     if(user != null){
-
                         Toast.makeText(getApplicationContext(),"Login successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(view.getContext(), Home.class);
                         startActivity(intent);
