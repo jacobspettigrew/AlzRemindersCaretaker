@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/bg1"
     android:weightSum="10"
-    tools:context=".MainActivity">
+    tools:context=".Home">
 
     <RelativeLayout
         android:layout_weight="2"
@@ -71,17 +71,23 @@
 
         <!-- Row 1 -->
         <!-- Column 1 -->
+
+        <!-- Row 1 -->
+        <!-- Column 2 -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewTask"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
+            android:layout_row="0"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
+            android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="120dp"
@@ -92,14 +98,14 @@
 
                 <TextView
 
-                    android:text="Tasks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:text="Tasks"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="90dp"
@@ -108,24 +114,21 @@
                     android:src="@drawable/task" />
 
 
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Row 1 -->
-        <!-- Column 2 -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewReminder"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
+            android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="120dp"
@@ -136,14 +139,14 @@
 
                 <TextView
 
-                    android:text="Information Reminders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:text="Information Reminders"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="90dp"
@@ -151,7 +154,6 @@
                     android:layout_gravity="center_horizontal"
 
                     android:src="@drawable/reminder" />
-
 
 
             </LinearLayout>
@@ -167,15 +169,15 @@
     <!-- Column 2 -->
     <androidx.cardview.widget.CardView
 
+        android:id="@+id/taskCardView"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
-        android:layout_marginBottom="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        app:cardElevation="8dp"
+        android:layout_marginBottom="30dp"
         app:cardCornerRadius="8dp"
 
-        >
+        app:cardElevation="8dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -186,14 +188,14 @@
 
             <TextView
 
-                android:text="Send Schedule To Patient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:text="Send Schedule To Patient"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 

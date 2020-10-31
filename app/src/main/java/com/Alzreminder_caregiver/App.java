@@ -3,6 +3,7 @@ package com.Alzreminder_caregiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,21 +35,20 @@ public class App extends AppCompatActivity  {
 //        if(ParseUser.getCurrentUser() != null){
 //            goToMainTask();
 //        }
+
+    }
+
+
+    public void goToSignUp(View view){
+        Toast.makeText(this,"Sign Up", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Sign_up.class);
+        startActivity(intent);
     }
 
     public void goToMainTask(View view){
         Intent intent = new Intent(this, MainTask.class);
         startActivity(intent);
     }
-
-
-
-    public void switch_sign_up(View view){
-        Toast.makeText(App.this,"Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Sign_up.class);
-        startActivity(intent);
-    }
-
 
     public void loggingIn(View view){
 
@@ -57,7 +57,7 @@ public class App extends AppCompatActivity  {
         EditText usernameText = findViewById(R.id.usernameLogin);
         EditText passwordText = findViewById(R.id.passwordLogin);
 
-       boolean  empty_user_pass = usernameText.getText().toString().matches("") || passwordText.getText().toString().matches("" );
+        boolean  empty_user_pass = usernameText.getText().toString().matches("") || passwordText.getText().toString().matches("" );
 
         // if the password or username is empty give a toast message otherwise proceed to login and sign up
         if(empty_user_pass){
@@ -68,15 +68,10 @@ public class App extends AppCompatActivity  {
                 @Override
                 public void done(ParseUser user, ParseException e) {
                     if(user != null){
-<<<<<<< Updated upstream
 
-=======
-                        
->>>>>>> Stashed changes
                         Toast.makeText(getApplicationContext(),"Login successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(view.getContext(), MainTask.class);
+                        Intent intent = new Intent(view.getContext(), Home.class);
                         startActivity(intent);
-
                     }
                     else {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -86,6 +81,7 @@ public class App extends AppCompatActivity  {
         }
 
     }
+
 
 
 }
