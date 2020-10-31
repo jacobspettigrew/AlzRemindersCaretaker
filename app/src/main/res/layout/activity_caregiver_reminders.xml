@@ -7,11 +7,8 @@
     android:orientation="vertical"
     android:background="@drawable/bg1"
     android:weightSum="10"
-<<<<<<< HEAD
-    tools:context=".MainTask">
-=======
     tools:context=".Reminder">
->>>>>>> merge-kiren
+
 
     <RelativeLayout
         android:layout_weight="2"
