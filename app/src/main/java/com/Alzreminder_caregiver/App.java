@@ -72,7 +72,6 @@ public class App extends AppCompatActivity  {
                         Toast.makeText(getApplicationContext(),"Login successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(view.getContext(), MainTask.class);
                         startActivity(intent);
-
                     }
                     else {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
