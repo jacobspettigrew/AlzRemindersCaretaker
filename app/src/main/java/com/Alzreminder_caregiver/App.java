@@ -35,7 +35,6 @@ public class App extends AppCompatActivity  {
         if(ParseUser.getCurrentUser() != null){
             goToMainTask();
         }
-
     }
 
 
@@ -51,13 +50,10 @@ public class App extends AppCompatActivity  {
     }
 
     public void loggingIn(View view){
-
-
         EditText usernameText = findViewById(R.id.usernameLogin);
         EditText passwordText = findViewById(R.id.passwordLogin);
         boolean emptyUsername = usernameText.getText().toString().matches("");
         boolean emptyPassword = passwordText.getText().toString().matches("" );
-
         boolean  emptyUserPassword = emptyUsername || emptyPassword;
 
         // if the password or username is empty give a toast message otherwise proceed to login and sign up
