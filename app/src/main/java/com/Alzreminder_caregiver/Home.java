@@ -34,7 +34,6 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         startActivity(intent);
     }
 
-
     @Override
     public void onClick(View view) {
         Intent intent;

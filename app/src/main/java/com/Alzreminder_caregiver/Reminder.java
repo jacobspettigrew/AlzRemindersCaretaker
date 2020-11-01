@@ -12,5 +12,4 @@ public class Reminder extends AppCompatActivity {
         setContentView(R.layout.activity_caregiver_reminders);
 
     }
-
 }

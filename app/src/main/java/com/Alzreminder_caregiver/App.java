@@ -38,7 +38,6 @@ public class App extends AppCompatActivity  {
 
     }
 
-
     public void goToSignUp(View view){
         Toast.makeText(this,"Sign Up", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, Sign_up.class);
@@ -82,9 +81,5 @@ public class App extends AppCompatActivity  {
                 }
             });
         }
-
     }
-
-
-
 }

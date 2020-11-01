@@ -19,9 +19,6 @@ public class Sign_up extends  Activity{
 
     }
 
-
-
-
     public void signingUp(String username, String password, String email, String firstName, String lastName){
         ParseUser user = new ParseUser();
         //if logout forced
@@ -48,7 +45,6 @@ public class Sign_up extends  Activity{
 
     }
 
-
     //need more testing and functinoalities here
     public void onClickedSignedUp(View view){
 
@@ -65,17 +61,6 @@ public class Sign_up extends  Activity{
 
         //if username, email , password are empty, return false
         boolean  emptyFields = emptyEmail || unMatchedPassword|| emptyUsername;
-
-
-        //if password empty
-/*        if(passwordText.getText().toString().matches(passwordConfirmText.getText().toString())){
-            passwordMatched = false;
-        }
-        else {
-            passwordMatched = true;
-        }
-        */
-
 
         // if the password or username is empty give a toast message otherwise proceed to login and sign up
         if(emptyFields){
