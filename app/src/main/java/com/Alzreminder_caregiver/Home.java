@@ -38,7 +38,6 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Intent intent;
-
         switch(view.getId()){
             case R.id.cardViewTask: {
                 intent = new Intent(this, MainTask.class);
@@ -53,8 +52,6 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             default:{
                 break;
             }
-
         }
-
     }
 }

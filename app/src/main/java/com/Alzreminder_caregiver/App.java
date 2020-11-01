@@ -32,9 +32,10 @@ public class App extends AppCompatActivity  {
         );
 
         setContentView(R.layout.activity_main);
-        if(ParseUser.getCurrentUser() != null){
-            goToMainTask();
-        }
+//        if(ParseUser.getCurrentUser() != null){
+//            goToMainTask();
+//        }
+
     }
 
 
@@ -66,8 +67,14 @@ public class App extends AppCompatActivity  {
                 public void done(ParseUser user, ParseException e) {
                     if(user != null){
                         Toast.makeText(getApplicationContext(),"Login successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(view.getContext(), Home.class);
-                        startActivity(intent);
+                        if(!user.getBoolean("connectToPatient")){
+                            Intent intent = new Intent(view.getContext(), SetId.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Intent intent = new Intent(view.getContext(), Home.class);
+                            startActivity(intent);
+                        }
                     }
                     else {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

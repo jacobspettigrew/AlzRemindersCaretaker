@@ -22,6 +22,7 @@
         <activity android:name=".Home"/>
         <activity android:name=".Reminder"/>
         <activity android:name=".MainTask"/>
+        <activity android:name=".SetId"/>
 
         <meta-data
             android:name="com.parse.SERVER_URL"
