@@ -21,6 +21,7 @@ import java.util.List;
 
 public class SetId extends AppCompatActivity {
     EditText uniqueId;
+    private static final String TAG = "SetId";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +56,16 @@ public class SetId extends AppCompatActivity {
                                             toastMsgMatchSuccess(view);
                                         }
                                         else{
+                                            Log.d(TAG,e.getMessage());
                                         }
                                     }
                                 });
 
                             }
                         }
+                    }
+                    else {
+                        toatMessageInvalidId();
                     }
                 }
             }
@@ -79,6 +84,9 @@ public class SetId extends AppCompatActivity {
     public void toastMsgMatchSuccess(View view){
             Toast.makeText(this, "match successfully" , Toast.LENGTH_SHORT).show();
             goToHome(view);
+    }
+    public void toatMessageInvalidId(){
+        Toast.makeText(this, "the id is invalid" , Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -32,10 +32,9 @@ public class App extends AppCompatActivity  {
         );
 
         setContentView(R.layout.activity_main);
-//        if(ParseUser.getCurrentUser() != null){
-//            goToMainTask();
-//        }
-
+        if(ParseUser.getCurrentUser() != null){
+            goToMainTask();
+        }
     }
 
     public void goToSignUp(View view){
