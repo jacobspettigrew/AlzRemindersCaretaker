@@ -15,17 +15,6 @@
         android:layout_height="170dp">
 
 
-        <TextView
-            android:id="@+id/textGrid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginVertical="100dp"
-            android:text="Current Tasks"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:textSize="34sp" />
-
         <EditText
             android:background="@android:color/transparent"
             android:padding="14dp"
@@ -54,13 +43,27 @@
             android:textColor="@android:color/white"
             android:textSize="20sp"/>
 
-
-
+        <EditText
+            android:id="@+id/inputTaskEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_below="@+id/caregiverName"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="87dp"
+            android:layout_marginEnd="59dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Enter task" />
 
 
     </RelativeLayout>
 
     <!--This is for the task list-->
+
+
+    <!--for the buttons at bottom-->
     <androidx.cardview.widget.CardView
 
         android:layout_width="fill_parent"
@@ -73,73 +76,12 @@
 
         >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_margin="16dp"
-            android:orientation="vertical"
-            >
-
-
-            <TextView
-
-                android:padding="4dp"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Task 1"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-
-                android:padding="4dp"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Task 2"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-            <TextView
-
-                android:padding="4dp"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Task 3"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-            <TextView
-
-                android:padding="4dp"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Task 4"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-
-
-
-
-
-
-        </LinearLayout>
-
+        <ListView
+            android:id="@+id/taskView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
 
-
-    <!--for the buttons at bottom-->
     <GridLayout
 
 
@@ -153,168 +95,29 @@
         android:layout_height="0dp"
         android:padding="14dp">
 
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="119dp"
+            android:text="Add" />
 
-        <!-- Row 1 -->
-        <!-- Column 1 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:text="Delete" />
 
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="123dp"
+            android:text="Edit" />
 
-                <TextView
-
-                    android:text="Add"
-                    android:layout_gravity="center_horizontal"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-
-
-
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!-- Row 1 -->
-        <!-- Column 1 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
-
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <TextView
-
-                    android:text="Delete"
-                    android:layout_gravity="center_horizontal"
-                    android:textAlignment="center"
-
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-
-
-
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!-- Row 1 -->
-        <!-- Column 1 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
-
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <TextView
-
-                    android:text="Edit"
-                    android:layout_gravity="center_horizontal"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!-- Row 1 -->
-        <!-- Column 1 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
-
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <TextView
-
-                    android:text="Archive"
-                    android:layout_gravity="center_horizontal"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-
-
-
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-
-
-
+        <Button
+            android:id="@+id/archiveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="122dp"
+            android:text="Archive" />
     </GridLayout>
 
 
