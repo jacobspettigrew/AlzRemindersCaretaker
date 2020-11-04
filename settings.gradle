@@ -1,6 +1,3 @@
 include ':app'
-<<<<<<< HEAD
 rootProject.name = "Alzreminder_caregiver"
-=======
-rootProject.name = "TaskScheduler"
->>>>>>> CaretakerTaskScheduler
+

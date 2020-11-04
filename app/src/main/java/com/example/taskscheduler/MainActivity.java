@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.Alzreminder_caregiver.R;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
