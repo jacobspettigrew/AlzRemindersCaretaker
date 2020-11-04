@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.Alzreminder_caregiver">
+=======
+    package="com.example.taskscheduler">
+>>>>>>> CaretakerTaskScheduler
 
     <application
         android:allowBackup="true"
@@ -8,15 +12,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+<<<<<<< HEAD
         android:theme="@style/Theme.Alzreminder_caregiver"
         >
         <activity android:name=".App">
+=======
+        android:theme="@style/Theme.TaskScheduler">
+        <activity android:name=".MainActivity">
+>>>>>>> CaretakerTaskScheduler
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         <activity android:name=".Sign_up"/>
         <activity android:name=".Home"/>
@@ -37,5 +47,8 @@
     </application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+=======
+    </application>
+>>>>>>> CaretakerTaskScheduler
 
 </manifest>
