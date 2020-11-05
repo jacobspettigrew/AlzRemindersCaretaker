@@ -99,7 +99,25 @@ public class MainTask extends AppCompatActivity {
         setUpTaskViewListener();
     }
 
-    private void editTask(View v) {
+    // Edits the task text
+    private void taskEditListener() {
+        taskView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Context context = getApplicationContext();
+                Toast.makeText(context, "Editing Task", Toast.LENGTH_LONG).show();
 
+                EditText input = findViewById(R.id.inputTaskEditText);
+                input.setText(tasks.get(position));
+
+                tasksAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+    }
+
+    // Allows the user to edit task
+    private void editTask(View v) {
+        taskEditListener();
     }
 }
