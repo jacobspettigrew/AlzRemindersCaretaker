@@ -99,7 +99,7 @@ public class MainTask extends AppCompatActivity {
         setUpTaskViewListener();
     }
 
-    // Edits the task text
+    // Moves the task to the editText to be edited and deletes the old task
     private void taskEditListener() {
         taskView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -110,6 +110,7 @@ public class MainTask extends AppCompatActivity {
                 EditText input = findViewById(R.id.inputTaskEditText);
                 input.setText(tasks.get(position));
 
+                tasks.remove(position);
                 tasksAdapter.notifyDataSetChanged();
                 return true;
             }
