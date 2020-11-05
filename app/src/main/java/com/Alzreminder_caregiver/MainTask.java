@@ -13,6 +13,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -45,6 +49,8 @@ public class MainTask extends AppCompatActivity {
 
         listView = findViewById(R.id.listView);
         addButton = findViewById(R.id.button);
+
+
 
         items = new ArrayList<>();
         itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);

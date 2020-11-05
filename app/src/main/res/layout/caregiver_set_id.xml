@@ -4,9 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg1"
     tools:context=".SetId">
 
+
+    <TextView
+        android:id="@+id/create_account_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+
+        android:layout_marginBottom="190dp"
+        android:text="Enter Patient ID"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/SetIdTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
+        android:textColor="@color/black"
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +34,7 @@
         android:layout_marginEnd="159dp"
         android:layout_marginBottom="388dp"
         android:onClick="checkUniqueId"
-        android:text="Button"
+        android:text="Enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -27,11 +46,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="206dp"
+        android:layout_marginTop="500dp"
         android:layout_marginEnd="101dp"
         android:layout_marginBottom="44dp"
         android:ems="10"
-        android:hint="Unique Id"
+        android:hint="Unique ID"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"

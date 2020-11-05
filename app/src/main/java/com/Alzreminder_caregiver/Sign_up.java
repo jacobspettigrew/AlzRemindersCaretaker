@@ -42,8 +42,8 @@ public class Sign_up extends  Activity{
                 }
             }
         });
-
     }
+
 
     //need more testing and functinoalities here
     public void onClickedSignedUp(View view){
