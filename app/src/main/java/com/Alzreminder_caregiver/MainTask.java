@@ -35,7 +35,6 @@ public class MainTask extends AppCompatActivity {
         addButton = findViewById(R.id.addButton);
         deleteButton = findViewById(R.id.deleteButton);
         editButton = findViewById(R.id.editButton);
-        archiveButton = findViewById(R.id.archiveButton);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,12 +57,6 @@ public class MainTask extends AppCompatActivity {
             }
         });
 
-        archiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                archiveTask(v);
-            }
-        });
 
         // The list that will hold the tasks
         tasks = new ArrayList<>();
@@ -107,14 +100,6 @@ public class MainTask extends AppCompatActivity {
     }
 
     private void editTask(View v) {
+
     }
-
-    private void archiveTask(View v) {
-    }
-
-
-
-
-
-
 }
