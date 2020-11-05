@@ -1,5 +1,6 @@
 package com.Alzreminder_caregiver;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -35,6 +36,8 @@ public class App extends AppCompatActivity  {
         if(ParseUser.getCurrentUser() != null){
             goToMainTask();
         }
+
+
     }
 
     public void goToSignUp(View view){
