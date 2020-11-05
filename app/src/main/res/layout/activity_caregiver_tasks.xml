@@ -9,116 +9,70 @@
     android:weightSum="10"
     tools:context=".MainTask">
 
-    <RelativeLayout
+    <EditText
+        android:id="@+id/patientName"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_weight="2">
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="right"
+        android:inputType="textPersonName"
+        android:padding="14dp"
+        android:text="Patient's Name"
 
-
-        <EditText
-            android:id="@+id/caregiverName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:gravity="left"
-            android:inputType="textPersonName"
-            android:padding="14dp"
-            android:text="Caregiver's Name"
-
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/patientName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:gravity="right"
-            android:inputType="textPersonName"
-            android:padding="14dp"
-            android:text="Patient's Name"
-
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/inputTaskEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_below="@+id/caregiverName"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="58dp"
-            android:layout_marginTop="87dp"
-            android:layout_marginEnd="59dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Enter task" />
-
-
-    </RelativeLayout>
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
     <!--This is for the task list-->
 
 
     <!--for the buttons at bottom-->
-    <androidx.cardview.widget.CardView
 
-        android:layout_width="fill_parent"
-        android:layout_height="362dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+    <EditText
+        android:id="@+id/inputTaskEditText"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="87dp"
+        android:layout_marginEnd="59dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Enter task"
+        android:textColor="#070707" />
 
-        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="262dp"
+        android:orientation="vertical">
 
         <ListView
             android:id="@+id/taskView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="272dp"
+            android:background="#C6C2C2" />
+    </LinearLayout>
 
-    <GridLayout
-
-
+    <Button
+        android:id="@+id/addButton"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8"
-        android:alignmentMode="alignMargins"
-        android:columnCount="3"
-        android:columnOrderPreserved="false"
-        android:padding="14dp"
-        android:rowCount="1">
+        android:layout_height="45dp"
+        android:layout_weight="2"
+        android:text="Add" />
 
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="wrap_content"
-            android:layout_height="123dp"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:text="Edit" />
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_weight="2"
+        android:text="Delete" />
 
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="123dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:text="Delete" />
-
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="123dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:text="Add" />
-
-    </GridLayout>
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_weight="2"
+        android:text="Edit" />
 
 
 </LinearLayout>
