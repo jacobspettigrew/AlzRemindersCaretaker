@@ -1,26 +1,33 @@
+/*
+HEADER
+FILE NAME:App.java
+TEAN NAME: Alzreminders
+BUGS:
+PEOPLE WHO WORKED ON: KYUNG CHEOL KOH
+PURPOSE:
+    CONNECT TO Back4App service
+    OPEN THE MAIN ACTIVITY XML
+    LISTS OF FUNCTIONS TO DIRECT TO DIFFERENT ACTIVITEIS
+
+*/
+
+
 package com.Alzreminder_caregiver;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
+
 
 
 public class App extends AppCompatActivity  {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +43,13 @@ public class App extends AppCompatActivity  {
         if(ParseUser.getCurrentUser() != null){
             goToMainTask();
         }
-
-
     }
+
+    //LISTS OF FUNCTNIOS TO GO TO DIFFERENT ACTIVITIES
 
     public void goToSignUp(View view){
         Toast.makeText(this,"Sign Up", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Sign_up.class);
+        Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
     }
 
@@ -51,6 +58,8 @@ public class App extends AppCompatActivity  {
         startActivity(intent);
     }
 
+    // IF LOGGED IN FIRST TIME, IT GOES TO SETID ACTIVITY
+    //OTHERWISE HOME ACTIVITY
     public void loggingIn(View view){
         EditText usernameText = findViewById(R.id.usernameLogin);
         EditText passwordText = findViewById(R.id.passwordLogin);

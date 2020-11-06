@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Sign_up"/>
+        <activity android:name=".SignUp"/>
         <activity android:name=".Home"/>
         <activity android:name=".Reminder"/>
         <activity android:name=".MainTask"/>

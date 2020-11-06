@@ -7,13 +7,11 @@
     android:background="@drawable/bg1"
     tools:context=".SetId">
 
-
     <TextView
         android:id="@+id/create_account_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
-
         android:layout_marginBottom="190dp"
         android:text="Enter Patient ID"
         android:textColor="@color/white"
@@ -25,7 +23,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:textColor="@color/black"
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,6 +32,7 @@
         android:layout_marginBottom="388dp"
         android:onClick="checkUniqueId"
         android:text="Enter"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

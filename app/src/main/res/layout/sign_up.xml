@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
-    tools:context=".Sign_up">
+    tools:context=".SignUp">
 
     <EditText
         android:id="@+id/first_name"
@@ -33,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
         android:layout_marginBottom="158dp"
+        android:backgroundTint="@color/white"
         android:text="Create Your Account"
-        android:backgroundTint="#090000"
-        android:textColor="#0C0909"
+        android:textColor="@color/white"
         android:textColorHint="#8A8A8A"
         android:textSize="24dp"
         android:textStyle="bold"
@@ -116,7 +116,7 @@
         android:layout_marginBottom="90dp"
         android:onClick="onClickedSignedUp"
         android:text="CREATE ACCOUNT"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"

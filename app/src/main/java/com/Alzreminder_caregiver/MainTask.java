@@ -1,11 +1,20 @@
+/*
+HEADER
+FILE NAME:App.java
+TEAN NAME: Alzreminders
+BUGS:
+PEOPLE WHO WORKED ON: KYUNG CHEOL KOH JACOB PETTIGREW
+PURPOSE:
+        TO ADD, DELETE AND EDIT TASKS FROM THE LISTVIEW
+*/
+
+
 package com.Alzreminder_caregiver;
 
-import android.app.ActionBar;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,54 +38,50 @@ import java.util.List;
 
 public class MainTask extends AppCompatActivity {
 
-    //var
-
-    private ArrayAdapter<String> itemsAdapter;
+    //LISTVIEW
+    private ArrayAdapter<String> tasksAdapter;
     ParseObject patientObject;
 
-    //ui
-    private ListView listView;
-    private ArrayList<String> tasks;
-    private ArrayAdapter<String> tasksAdapter;
-    private ListView taskView;
-    private Button addButton;
-    private Button deleteButton;
-    private Button editButton;
-
+    //UI
+    private ArrayList<String> mTasks;
+    private ListView mTaskView;
+    private Button mAddButton;
+    private Button mDeleteButton;
+    private Button mEditButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.carevier_tasks);
 
-        // Find the UI elements by their id
-        taskView = findViewById(R.id.taskView);
-        addButton = findViewById(R.id.addButton);
-        deleteButton = findViewById(R.id.deleteButton);
-        editButton = findViewById(R.id.editButton);
-        tasks = new ArrayList<>();
-        tasksAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tasks);
+        //UI
+        mTaskView = findViewById(R.id.taskView);
+        mAddButton = findViewById(R.id.addButton);
+        mDeleteButton = findViewById(R.id.deleteButton);
+        mEditButton = findViewById(R.id.editButton);
 
+        //LISTVIEW
+        mTasks = new ArrayList<>();
+        tasksAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mTasks);
 
         findObjectId();
-        taskView.setAdapter(tasksAdapter);
+        mTaskView.setAdapter(tasksAdapter);
         setUpTaskViewListener();
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+        //ONCLICK LISTENERS
+        mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addTask(v);
             }
         });
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deleteTask(v);
             }
         });
-
-        editButton.setOnClickListener(new View.OnClickListener() {
+        mEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editTask(v);
@@ -84,34 +89,17 @@ public class MainTask extends AppCompatActivity {
         });
     }
 
-    // Watches for a long press that will remove an task from the task list
-    private void setUpListViewListener() {
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Context context = getApplicationContext();
-                Toast.makeText(context, "Task Removed", Toast.LENGTH_LONG).show();
 
-                tasks.remove(position);
-                itemsAdapter.notifyDataSetChanged();
-                //upadate in the data
-                patientObject.put("arrayToDos", tasks);
-                patientObject.saveInBackground();
-                return true;
-            }
-        });
-    }
-
-    // When called, it will add the task to the list
+    // WHEN CALLED, IT WILL ADD THE TASK TO THE LIST
     private void addItem(View view) {
-        EditText input = findViewById(R.id.editTextTextPersonName);
+        //UI
+        EditText input = findViewById(R.id.inputTaskEditText);
         String itemText = input.getText().toString();
 
         if(!(itemText.equals(""))) {
             tasksAdapter.add(itemText);
-
             //update in the data
-            patientObject.addAllUnique("arrayToDos",tasks);
+            patientObject.addAllUnique("arrayToDos",mTasks);
             patientObject.saveInBackground();
             input.setText("");
         }
@@ -120,6 +108,7 @@ public class MainTask extends AppCompatActivity {
         }
     }
 
+    //ITERATION TO FIND THE OBJECTID AND UPDATE THE LISTVIEW
     private void findObjectId(){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Patient");
         query.whereEqualTo("objectId", ParseUser.getCurrentUser().getString("patientId"));
@@ -135,7 +124,7 @@ public class MainTask extends AppCompatActivity {
                             }
                             else {
                                 for (int i = 0; i < item.size(); i++) {
-                                    tasks.add(item.get(i).toString());
+                                    mTasks.add(item.get(i).toString());
                                     tasksAdapter.notifyDataSetChanged();
                                 }
                             }
@@ -147,7 +136,7 @@ public class MainTask extends AppCompatActivity {
     }
 
 
-    // Adds a task to the tasklist
+    // ADDS A TASK TO THE TASKLIST
     private void addTask(View v) {
         EditText input = findViewById(R.id.inputTaskEditText);
         String taskText = input.getText().toString();
@@ -156,7 +145,7 @@ public class MainTask extends AppCompatActivity {
             tasksAdapter.add(taskText);
             input.setText("");
             //update in the data
-            patientObject.addAllUnique("arrayToDos",tasks);
+            patientObject.addAllUnique("arrayToDos",mTasks);
             patientObject.saveInBackground();
         }
         else {
@@ -164,49 +153,50 @@ public class MainTask extends AppCompatActivity {
         }
     }
 
-    // Deletes the task with a long press after delete button is implemented
-    // Change to short press
+    // DELETES THE TASK WITH A LONG PRESS AFTER DELETE BUTTON IS IMPLEMENTED
+    // CHANGE TO SHORT PRESS
     private void deleteTask(View v) {
         setUpTaskViewListener();
     }
 
-    // Moves the task to the editText to be edited and deletes the old task
+    // MOVES THE TASK TO THE EDITTEXT TO BE EDITED AND DELETES THE OLD TASK
     private void taskEditListener() {
-        taskView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        mTaskView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Context context = getApplicationContext();
                 Toast.makeText(context, "Editing Task", Toast.LENGTH_LONG).show();
 
                 EditText input = findViewById(R.id.inputTaskEditText);
-                input.setText(tasks.get(position));
-
-                tasks.remove(position);
+                input.setText(mTasks.get(position));
+                //UPDATE IN THE ARRAYLIST
+                mTasks.remove(position);
                 tasksAdapter.notifyDataSetChanged();
-                patientObject.put("arrayToDos", tasks);
+                //UPDATE IN THE DATABSE
+                patientObject.put("arrayToDos", mTasks);
                 patientObject.saveInBackground();
                 return true;
             }
         });
     }
 
-    // Allows the user to edit task
+    // ALLOWS THE USER TO EDIT TASK
     private void editTask(View v) {
         taskEditListener();
     }
 
-    // Deletes the task in the list on a long press
+    // DELETES THE TASK IN THE LIST ON A LONG PRESS
     private void setUpTaskViewListener() {
-        taskView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        mTaskView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Context context = getApplicationContext();
                 Toast.makeText(context, "Task Removed", Toast.LENGTH_LONG).show();
-                tasks.remove(position);
-
+                //UPDATE IN THE ARRAYLIST
+                mTasks.remove(position);
                 tasksAdapter.notifyDataSetChanged();
-                //upadate in the data
-                patientObject.put("arrayToDos", tasks);
+                //UPDATE IN THE DATABASE
+                patientObject.put("arrayToDos", mTasks);
                 patientObject.saveInBackground();
                 return true;
             }

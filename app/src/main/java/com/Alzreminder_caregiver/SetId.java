@@ -1,3 +1,15 @@
+/*
+HEADER
+FILE NAME:SetId.java
+TEAN NAME: Alzreminders
+BUGS:
+PEOPLE WHO WORKED ON: KYUNG CHEOL KOH
+PURPOSE:
+    CONNECT UNIQUE ID TO THE USER
+    CHECK IF UNIQUE ID IS ALREADY CONNECTED
+*/
+
+
 package com.Alzreminder_caregiver;
 
 import android.content.Intent;
@@ -29,11 +41,13 @@ public class SetId extends AppCompatActivity {
         uniqueId = findViewById(R.id.SetIdTextView);
     }
 
+    //ITERATIONN TO CHECK IF UNIQUE ID ALREADY EXISTS
     public void checkUniqueId(View view){
+        //VARIABLES
         String uniqueIdText = uniqueId.getText().toString();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Patient");
 
-        //iterations to find unique id
+        //ITERATIONS TO FIND UNIQUE ID
         query.whereEqualTo("uniqueId", uniqueIdText);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -56,7 +70,6 @@ public class SetId extends AppCompatActivity {
                                             toastMsgMatchSuccess(view);
                                         }
                                         else{
-                                            Log.d(TAG,e.getMessage());
                                         }
                                     }
                                 });
@@ -77,10 +90,11 @@ public class SetId extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    //TOAST FUNCTIONS ARE CREATED TO USE TOAST METHOND INSIDE FINDINBACKGROUND FUNCTION
     public void toastMsgUserExist(){
         Toast.makeText(this, "the id is already connected to another user" , Toast.LENGTH_SHORT).show();
     }
-
     public void toastMsgMatchSuccess(View view){
             Toast.makeText(this, "match successfully" , Toast.LENGTH_SHORT).show();
             goToHome(view);
