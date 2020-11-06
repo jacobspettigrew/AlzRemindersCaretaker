@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Alzreminder_caregiver"
+        android:usesCleartextTraffic="true"
+
         >
         <activity android:name=".App">
             <intent-filter>
@@ -18,8 +20,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Sign_up"/>
+        <activity android:name=".SignUp"/>
+        <activity android:name=".Home"/>
+        <activity android:name=".Reminder"/>
         <activity android:name=".MainTask"/>
+        <activity android:name=".SetId"/>
+
 
         <meta-data
             android:name="com.parse.SERVER_URL"

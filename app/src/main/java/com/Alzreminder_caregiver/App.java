@@ -1,24 +1,35 @@
+/*
+HEADER
+FILE NAME:App.java
+TEAM NAME: Alzreminders
+BUGS:
+PEOPLE WHO WORKED ON: KYUNG CHEOL KOH
+PURPOSE:
+    CONNECT TO Back4App service
+    OPEN THE MAIN ACTIVITY XML
+    LISTS OF FUNCTIONS TO DIRECT TO DIFFERENT ACTIVITEIS
+
+CODING STANDARD
+    NAME CONVENTION: CAMELCASE STARTING WITH LOWERCASE
+    GLOBAL VARIABLE: CAMELCASE STARTING WITH m
+
+*/
+
+
 package com.Alzreminder_caregiver;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
-
 
 public class App extends AppCompatActivity  {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,36 +42,34 @@ public class App extends AppCompatActivity  {
         );
 
         setContentView(R.layout.activity_main);
-//        if(ParseUser.getCurrentUser() != null){
-//            goToMainTask();
-//        }
+        if(ParseUser.getCurrentUser() != null){
+            goToMainTask();
+        }
     }
 
-    public void goToMainTask(View view){
+    //LISTS OF FUNCTNIOS TO GO TO DIFFERENT ACTIVITIES
+    public void goToSignUp(View view){
+        Toast.makeText(this,"Sign Up", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, SignUp.class);
+        startActivity(intent);
+    }
+
+    public void goToMainTask(){
         Intent intent = new Intent(this, MainTask.class);
         startActivity(intent);
     }
 
-
-
-    public void switch_sign_up(View view){
-        Toast.makeText(App.this,"Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Sign_up.class);
-        startActivity(intent);
-    }
-
-
+    // IF LOGGED IN FIRST TIME, IT GOES TO SETID ACTIVITY
+    //OTHERWISE HOME ACTIVITY
     public void loggingIn(View view){
-
-//        ParseUser user = new ParseUser();
-//        user.logOut();
         EditText usernameText = findViewById(R.id.usernameLogin);
         EditText passwordText = findViewById(R.id.passwordLogin);
+        boolean emptyUsername = usernameText.getText().toString().matches("");
+        boolean emptyPassword = passwordText.getText().toString().matches("" );
+        boolean  emptyUserPassword = emptyUsername || emptyPassword;
 
-       boolean  empty_user_pass = usernameText.getText().toString().matches("") || passwordText.getText().toString().matches("" );
-
-        // if the password or username is empty give a toast message otherwise proceed to login and sign up
-        if(empty_user_pass){
+        //IF THE PASSWORD OR USERNAME IS EMPTY GIVE A TOAST MESSAGE OTHERWISE PROCEED TO LOGIN AND SIGN UP
+        if(emptyUserPassword){
             Toast.makeText(this, "username and password are required", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -68,10 +77,15 @@ public class App extends AppCompatActivity  {
                 @Override
                 public void done(ParseUser user, ParseException e) {
                     if(user != null){
-
                         Toast.makeText(getApplicationContext(),"Login successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(view.getContext(), MainTask.class);
-                        startActivity(intent);
+                        if(!user.getBoolean("connectToPatient")){
+                            Intent intent = new Intent(view.getContext(), SetId.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Intent intent = new Intent(view.getContext(), Home.class);
+                            startActivity(intent);
+                        }
                     }
                     else {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -79,8 +93,5 @@ public class App extends AppCompatActivity  {
                 }
             });
         }
-
     }
-
-
 }
