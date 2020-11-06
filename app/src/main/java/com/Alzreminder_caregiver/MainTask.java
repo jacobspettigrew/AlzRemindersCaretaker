@@ -1,11 +1,14 @@
 /*
 HEADER
-FILE NAME:App.java
-TEAN NAME: Alzreminders
+FILE NAME: MainTask.java
+TEAM NAME: Alzreminders
 BUGS:
 PEOPLE WHO WORKED ON: KYUNG CHEOL KOH JACOB PETTIGREW
 PURPOSE:
         TO ADD, DELETE AND EDIT TASKS FROM THE LISTVIEW
+CODING STANDARD
+    NAME CONVENTION: CAMELCASE STARTING WITH LOWERCASE
+    GLOBAL VARIABLE: CAMELCASE STARTING WITH m
 */
 
 
@@ -89,7 +92,6 @@ public class MainTask extends AppCompatActivity {
         });
     }
 
-
     // WHEN CALLED, IT WILL ADD THE TASK TO THE LIST
     private void addItem(View view) {
         //UI
@@ -166,7 +168,6 @@ public class MainTask extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Context context = getApplicationContext();
                 Toast.makeText(context, "Editing Task", Toast.LENGTH_LONG).show();
-
                 EditText input = findViewById(R.id.inputTaskEditText);
                 input.setText(mTasks.get(position));
                 //UPDATE IN THE ARRAYLIST

@@ -1,12 +1,15 @@
 /*
 HEADER
 FILE NAME:SetId.java
-TEAN NAME: Alzreminders
+TEAM NAME: Alzreminders
 BUGS:
 PEOPLE WHO WORKED ON: KYUNG CHEOL KOH
 PURPOSE:
     CONNECT UNIQUE ID TO THE USER
     CHECK IF UNIQUE ID IS ALREADY CONNECTED
+CODING STANDARD
+    NAME CONVENTION: CAMELCASE STARTING WITH LOWERCASE
+    GLOBAL VARIABLE: CAMELCASE STARTING WITH m
 */
 
 
@@ -89,7 +92,6 @@ public class SetId extends AppCompatActivity {
         Intent intent = new Intent(view.getContext(), Home.class);
         startActivity(intent);
     }
-
 
     //TOAST FUNCTIONS ARE CREATED TO USE TOAST METHOND INSIDE FINDINBACKGROUND FUNCTION
     public void toastMsgUserExist(){

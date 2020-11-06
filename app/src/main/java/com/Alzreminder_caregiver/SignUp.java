@@ -1,12 +1,14 @@
 /*
 HEADER
 FILE NAME:SignUp.java
-TEAN NAME: Alzreminders
+TEAM NAME: Alzreminders
 BUGS:
 PEOPLE WHO WORKED ON: KYUNG CHEOL KOH
 PURPOSE:
-
-
+        THE ACTIVITY ALLOWS YOU TO SIGN UP AND SAVE THE DATA TO THE DATABASE
+CODING STANDARD
+    NAME CONVENTION: CAMELCASE STARTING WITH LOWERCASE
+    GLOBAL VARIABLE: CAMELCASE STARTING WITH m
 */
 
 
@@ -30,10 +32,9 @@ public class SignUp extends  Activity{
         setContentView(R.layout.sign_up);
     }
 
-
     public void signingUp(String username, String password, String email, String firstName, String lastName){
         ParseUser user = new ParseUser();
-        // logout forced
+        // FORCE LOGOUT
         user.logOut();
 
         user.setUsername(username);
@@ -41,7 +42,7 @@ public class SignUp extends  Activity{
         user.setEmail(email);
         user.put("first_name", firstName);
         user.put("last_name", lastName);
-
+        //BACKGROUND THREAD TO SIGNUP
         user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
@@ -73,10 +74,10 @@ public class SignUp extends  Activity{
         boolean emptyUsername = usernameText.getText().toString().matches("");
         boolean emptyEmail = emailText.getText().toString().matches("" );
 
-        //if username, email , password are empty, return false
+        //IF USERNAME, EMAIL , PASSWORD ARE EMPTY, RETURN FALSE
         boolean  emptyFields = emptyEmail || unMatchedPassword|| emptyUsername;
 
-        // if the password or username is empty give a toast message otherwise proceed to login and sign up
+        // IF THE PASSWORD OR USERNAME IS EMPTY GIVE A TOAST MESSAGE OTHERWISE PROCEED TO LOGIN AND SIGN UP
         if(emptyFields){
             Toast.makeText(this, "Please check again", Toast.LENGTH_SHORT).show();
         }

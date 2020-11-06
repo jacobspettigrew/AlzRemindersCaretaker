@@ -1,13 +1,17 @@
 /*
 HEADER
 FILE NAME:App.java
-TEAN NAME: Alzreminders
+TEAM NAME: Alzreminders
 BUGS:
 PEOPLE WHO WORKED ON: KYUNG CHEOL KOH
 PURPOSE:
     CONNECT TO Back4App service
     OPEN THE MAIN ACTIVITY XML
     LISTS OF FUNCTIONS TO DIRECT TO DIFFERENT ACTIVITEIS
+
+CODING STANDARD
+    NAME CONVENTION: CAMELCASE STARTING WITH LOWERCASE
+    GLOBAL VARIABLE: CAMELCASE STARTING WITH m
 
 */
 
@@ -24,8 +28,6 @@ import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-
-
 
 public class App extends AppCompatActivity  {
     @Override
@@ -46,7 +48,6 @@ public class App extends AppCompatActivity  {
     }
 
     //LISTS OF FUNCTNIOS TO GO TO DIFFERENT ACTIVITIES
-
     public void goToSignUp(View view){
         Toast.makeText(this,"Sign Up", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, SignUp.class);
@@ -67,7 +68,7 @@ public class App extends AppCompatActivity  {
         boolean emptyPassword = passwordText.getText().toString().matches("" );
         boolean  emptyUserPassword = emptyUsername || emptyPassword;
 
-        // if the password or username is empty give a toast message otherwise proceed to login and sign up
+        //IF THE PASSWORD OR USERNAME IS EMPTY GIVE A TOAST MESSAGE OTHERWISE PROCEED TO LOGIN AND SIGN UP
         if(emptyUserPassword){
             Toast.makeText(this, "username and password are required", Toast.LENGTH_SHORT).show();
         }
