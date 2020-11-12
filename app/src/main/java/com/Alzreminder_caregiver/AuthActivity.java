@@ -19,17 +19,40 @@ CODING STANDARD
 package com.Alzreminder_caregiver;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.Alzreminder_caregiver.ui.auth.AuthViewModel;
+import com.Alzreminder_caregiver.viewmodels.ViewModelProviderFactory;
+import com.bumptech.glide.RequestManager;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class App extends AppCompatActivity  {
+import javax.inject.Inject;
+
+import dagger.android.support.DaggerAppCompatActivity;
+
+public class AuthActivity extends DaggerAppCompatActivity {
+
+    private static final String TAG = "AuthActivity";
+
+    private AuthViewModel viewModel;
+
+    @Inject
+    ViewModelProviderFactory providerFactory;
+    @Inject
+    Drawable logo;
+    @Inject
+    RequestManager requestManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +66,19 @@ public class App extends AppCompatActivity  {
 
         setContentView(R.layout.activity_auth);
 
+        viewModel = ViewModelProviders.of(this,providerFactory).get(AuthViewModel.class);
+        setLogo();
+
 //        if(ParseUser.getCurrentUser() != null){
 //            goToMainTask();
 //        }
+    }
+
+
+    private void setLogo(){
+        requestManager
+                .load(logo)
+                .into((ImageView)findViewById(R.id.login_logo));
     }
 
     //LISTS OF FUNCTNIOS TO GO TO DIFFERENT ACTIVITIES

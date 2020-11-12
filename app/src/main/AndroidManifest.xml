@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Alzreminder_caregiver"
         android:usesCleartextTraffic="true"
-
+        android:name=".BaseApplication"
         >
-        <activity android:name=".App">
+        <activity android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
