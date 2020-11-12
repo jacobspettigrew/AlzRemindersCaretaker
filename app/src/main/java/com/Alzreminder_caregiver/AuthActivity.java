@@ -41,10 +41,11 @@ public class App extends AppCompatActivity  {
                 .build()
         );
 
-        setContentView(R.layout.activity_main);
-        if(ParseUser.getCurrentUser() != null){
-            goToMainTask();
-        }
+        setContentView(R.layout.activity_auth);
+
+//        if(ParseUser.getCurrentUser() != null){
+//            goToMainTask();
+//        }
     }
 
     //LISTS OF FUNCTNIOS TO GO TO DIFFERENT ACTIVITIES
