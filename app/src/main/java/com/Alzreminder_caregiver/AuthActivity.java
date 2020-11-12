@@ -46,6 +46,8 @@ public class AuthActivity extends DaggerAppCompatActivity {
     private AuthViewModel viewModel;
 
     @Inject
+    Parse.Configuration parseInstance;
+    @Inject
     ViewModelProviderFactory providerFactory;
     @Inject
     Drawable logo;
@@ -56,22 +58,17 @@ public class AuthActivity extends DaggerAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId(getString(R.string.back4app_app_id))
-                // if defined
-                .clientKey(getString(R.string.back4app_client_key))
-                .server(getString(R.string.back4app_server_url))
-                .build()
-        );
 
+        Parse.initialize(parseInstance);
         setContentView(R.layout.activity_auth);
 
         viewModel = ViewModelProviders.of(this,providerFactory).get(AuthViewModel.class);
         setLogo();
 
-//        if(ParseUser.getCurrentUser() != null){
-//            goToMainTask();
-//        }
+        if(ParseUser.getCurrentUser() != null){
+            goToMainTask();
+        }
+
     }
 
 
@@ -95,9 +92,9 @@ public class AuthActivity extends DaggerAppCompatActivity {
 
     // IF LOGGED IN FIRST TIME, IT GOES TO SETID ACTIVITY
     //OTHERWISE HOME ACTIVITY
-    public void loggingIn(View view){
-        EditText usernameText = findViewById(R.id.usernameLogin);
-        EditText passwordText = findViewById(R.id.passwordLogin);
+    public void goToLogin(View view){
+        EditText usernameText = findViewById(R.id.username_loginActivity);
+        EditText passwordText = findViewById(R.id.password_loginActivity);
         boolean emptyUsername = usernameText.getText().toString().matches("");
         boolean emptyPassword = passwordText.getText().toString().matches("" );
         boolean  emptyUserPassword = emptyUsername || emptyPassword;

@@ -19,27 +19,62 @@
         android:layout_marginTop="16dp"/>
 
     <com.google.android.material.textfield.TextInputEditText
-        app:layout_constraintTop_toBottomOf="@+id/login_logo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:hint="User id"
-        android:textColor="#000"
+        android:id="@+id/password_loginActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/user_id_input"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="42dp"
+        android:hint="Password"
+        android:textColor="#000"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
+        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_loginActivity" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/username_loginActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="123dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Username"
+        android:textColor="#000"
+        app:layout_constraintBottom_toTopOf="@+id/password_loginActivity"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_logo" />
 
     <Button
-        app:layout_constraintTop_toBottomOf="@+id/user_id_input"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login_button"
-        android:layout_marginTop="15dp"
-        android:text="Login"/>
+        android:layout_marginTop="37dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="goToLogin"
+        android:text="Login"
+        app:layout_constraintBottom_toTopOf="@+id/signUp_button"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_loginActivity" />
 
-    <ProgressBar
+    <Button
+        android:id="@+id/signUp_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="148dp"
+        android:onClick="goToSignUp"
+        android:text="SignUp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+<!--    <ProgressBar
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -50,6 +85,6 @@
         android:layout_centerInParent="true"
         android:id="@+id/progress_bar"
         android:visibility="gone"
-        android:elevation="20dp"/>
+        android:elevation="20dp"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
