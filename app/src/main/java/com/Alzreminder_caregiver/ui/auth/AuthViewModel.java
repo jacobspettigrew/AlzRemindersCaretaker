@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import dagger.Binds;
 import dagger.multibindings.IntoMap;
 
-public abstract class AuthViewModel extends ViewModel {
+public class AuthViewModel extends ViewModel {
 
     private static final String TAG = "AuthViewModel";
 
