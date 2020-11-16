@@ -57,14 +57,18 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
-    // Lifecycles only (without ViewModel or LiveData)
+    // Lifecycles
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
 
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
-    // Annotation processor
+    // Annotation
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    // Reactive Streams (Observable to LiveData)
+    def reactivestreams_version = "1.1.1"
+    implementation "android.arch.lifecycle:reactivestreams:$reactivestreams_version"
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
@@ -73,6 +77,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "com.github.parse-community.Parse-SDK-Android:parse:1.25.0"
+
 
 
 

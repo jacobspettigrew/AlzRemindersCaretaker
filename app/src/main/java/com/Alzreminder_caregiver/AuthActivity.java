@@ -21,6 +21,8 @@ package com.Alzreminder_caregiver;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,31 +41,41 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class AuthActivity extends DaggerAppCompatActivity {
+import static androidx.core.content.ContextCompat.startActivity;
+import static com.Alzreminder_caregiver.Back4AppApi.AuthApi.authNum;
+
+public class AuthActivity extends DaggerAppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "AuthActivity";
 
-    private AuthViewModel viewModel;
+    private AuthViewModel mViewModel;
+
+    private EditText usernameText;
+    private EditText passwordText;
 
     @Inject
-    Parse.Configuration parseInstance;
+    Parse.Configuration provideParseConfig;
     @Inject
     ViewModelProviderFactory providerFactory;
     @Inject
-    Drawable logo;
+    Drawable provideLogo;
     @Inject
-    RequestManager requestManager;
-
+    RequestManager provideRequestManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Parse.initialize(parseInstance);
+        Parse.initialize(provideParseConfig);
         setContentView(R.layout.activity_auth);
 
-        viewModel = ViewModelProviders.of(this,providerFactory).get(AuthViewModel.class);
+        mViewModel = ViewModelProviders.of(this,providerFactory).get(AuthViewModel.class);
         setLogo();
+
+        usernameText = findViewById(R.id.username_loginActivity);
+        passwordText = findViewById(R.id.password_loginActivity);
+
+        findViewById(R.id.login_button).setOnClickListener(this);
 
         if(ParseUser.getCurrentUser() != null){
             goToMainTask();
@@ -73,8 +85,8 @@ public class AuthActivity extends DaggerAppCompatActivity {
 
 
     private void setLogo(){
-        requestManager
-                .load(logo)
+        provideRequestManager
+                .load(provideLogo)
                 .into((ImageView)findViewById(R.id.login_logo));
     }
 
@@ -90,11 +102,16 @@ public class AuthActivity extends DaggerAppCompatActivity {
         startActivity(intent);
     }
 
-    // IF LOGGED IN FIRST TIME, IT GOES TO SETID ACTIVITY
-    //OTHERWISE HOME ACTIVITY
-    public void goToLogin(View view){
-        EditText usernameText = findViewById(R.id.username_loginActivity);
-        EditText passwordText = findViewById(R.id.password_loginActivity);
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.login_button:{
+                goToLogin();
+            }
+        }
+    }
+
+    private void goToLogin(){
         boolean emptyUsername = usernameText.getText().toString().matches("");
         boolean emptyPassword = passwordText.getText().toString().matches("" );
         boolean  emptyUserPassword = emptyUsername || emptyPassword;
@@ -104,25 +121,81 @@ public class AuthActivity extends DaggerAppCompatActivity {
             Toast.makeText(this, "username and password are required", Toast.LENGTH_SHORT).show();
         }
         else {
-            ParseUser.logInInBackground(usernameText.getText().toString(),passwordText.getText().toString(), new LogInCallback() {
-                @Override
-                public void done(ParseUser user, ParseException e) {
-                    if(user != null){
-                        Toast.makeText(getApplicationContext(),"Login successful", Toast.LENGTH_SHORT).show();
-                        if(!user.getBoolean("connectToPatient")){
-                            Intent intent = new Intent(view.getContext(), SetId.class);
-                            startActivity(intent);
-                        }
-                        else{
-                            Intent intent = new Intent(view.getContext(), Home.class);
-                            startActivity(intent);
-                        }
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+            mViewModel.authWithUsernamePassword(usernameText.getText().toString(),passwordText.getText().toString());
+
+            int num = authNum[0];
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    Log.d(TAG, "run: " + authNum[0]);
+
+
+                    logInOption(authNum[0]);
                 }
-            });
+            }, 1000);
         }
     }
+
+    public void logInOption(int num){
+        switch (num){
+            case 1:{
+                Intent intent = new Intent(this, SetId.class);
+                startActivity(intent);
+                break;
+            }
+            case 2:{
+                Intent intent = new Intent(this, MainTask.class);
+                startActivity(intent);
+                break;
+            }
+            case -1:{
+                Log.d(TAG, "logInOption: erroroccured");
+                Toast.makeText(this, "Error occured", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            default:{
+                Toast.makeText(this, "Error occured", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+
+
+
+    // IF LOGGED IN FIRST TIME, IT GOES TO SETID ACTIVITY
+    //OTHERWISE HOME ACTIVITY
+//    public void goToLogin(View view){
+//        EditText usernameText = findViewById(R.id.username_loginActivity);
+//        EditText passwordText = findViewById(R.id.password_loginActivity);
+//        boolean emptyUsername = usernameText.getText().toString().matches("");
+//        boolean emptyPassword = passwordText.getText().toString().matches("" );
+//        boolean  emptyUserPassword = emptyUsername || emptyPassword;
+//
+//        //IF THE PASSWORD OR USERNAME IS EMPTY GIVE A TOAST MESSAGE OTHERWISE PROCEED TO LOGIN AND SIGN UP
+//        if(emptyUserPassword){
+//            Toast.makeText(this, "username and password are required", Toast.LENGTH_SHORT).show();
+//        }
+//        else {
+//            ParseUser.logInInBackground(usernameText.getText().toString(),passwordText.getText().toString(), new LogInCallback() {
+//                @Override
+//                public void done(ParseUser user, ParseException e) {
+//                    if(user != null){
+//                        Toast.makeText(getApplicationContext(),"Login successful", Toast.LENGTH_SHORT).show();
+//                        if(!user.getBoolean("connectToPatient")){
+//                            Intent intent = new Intent(view.getContext(), SetId.class);
+//                            startActivity(intent);
+//                        }
+//                        else{
+//                            Intent intent = new Intent(view.getContext(), Home.class);
+//                            startActivity(intent);
+//                        }
+//                    }
+//                    else {
+//                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//        }
+//    }
 }
