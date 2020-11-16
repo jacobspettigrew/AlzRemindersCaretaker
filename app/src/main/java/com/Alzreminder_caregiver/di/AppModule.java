@@ -5,10 +5,12 @@ import android.graphics.drawable.Drawable;
 
 import androidx.core.content.ContextCompat;
 
+import com.Alzreminder_caregiver.Back4AppApi.AuthApi;
 import com.Alzreminder_caregiver.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
+import com.parse.Parse;
 
 import javax.inject.Singleton;
 
@@ -17,6 +19,18 @@ import dagger.Provides;
 
 @Module
 public class AppModule {
+
+    @Singleton
+    @Provides
+    static Parse.Configuration provideParseConfig(Application application){
+        return new Parse.Configuration.Builder(application)
+                .applicationId("ppUUKGXynkwsUpbZRR6bij1SYvqea45AMYUj70xJ")
+                // if defined
+                .clientKey("ufwwEJ1t3ERojL7sCNQRL1sk7MRFnwpSUBCLE3sQ")
+                .server("https://parseapi.back4app.com")
+                .build();
+    }
+
 
     @Singleton
     @Provides

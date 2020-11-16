@@ -10,13 +10,18 @@ import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(
-        modules = {AndroidInjectionModule.class, ActivityBuildersModule.class, AppModule.class, ViewModelFactoryModule.class}
+        modules = {
+                AndroidSupportInjectionModule.class,
+                ActivityBuildersModule.class,
+                AppModule.class,
+                ViewModelFactoryModule.class,
+        }
 )
 public interface AppComponent extends AndroidInjector<BaseApplication> {
-
 
     @Component.Builder
     interface Builder{
@@ -27,3 +32,4 @@ public interface AppComponent extends AndroidInjector<BaseApplication> {
         AppComponent build();
     }
 }
+
