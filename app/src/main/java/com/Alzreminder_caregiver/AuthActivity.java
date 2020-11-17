@@ -122,13 +122,11 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
         }
         else {
             mViewModel.authWithUsernamePassword(usernameText.getText().toString(),passwordText.getText().toString());
-
             int num = authNum[0];
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
                     Log.d(TAG, "run: " + authNum[0]);
-
 
                     logInOption(authNum[0]);
                 }
@@ -158,10 +156,6 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
             }
         }
     }
-
-
-
-
 
     // IF LOGGED IN FIRST TIME, IT GOES TO SETID ACTIVITY
     //OTHERWISE HOME ACTIVITY
