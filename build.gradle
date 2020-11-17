@@ -22,3 +22,13 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    roomVersion = '1.1.1'
+    archLifecycleVersion = '1.1.1'
+    dagger_version = "2.22"
+    glideVersion = "4.9.0"
+    material_version = "1.0.0"
+    lifecycle_version = "2.2.0"
+    reactivestreams_version = "1.1.1"
+}
