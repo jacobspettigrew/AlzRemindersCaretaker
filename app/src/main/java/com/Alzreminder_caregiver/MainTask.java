@@ -15,14 +15,19 @@ CODING STANDARD
 package com.Alzreminder_caregiver;
 
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,8 +40,10 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class MainTask extends AppCompatActivity {
@@ -45,12 +52,14 @@ public class MainTask extends AppCompatActivity {
     private ArrayAdapter<String> tasksAdapter;
     ParseObject patientObject;
 
-    //UI
+    //UIz
     private ArrayList<String> mTasks;
     private ListView mTaskView;
     private Button mAddButton;
     private Button mDeleteButton;
     private Button mEditButton;
+    private EditText input;
+    private EditText dateTimeInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,8 @@ public class MainTask extends AppCompatActivity {
         mAddButton = findViewById(R.id.addButton);
         mDeleteButton = findViewById(R.id.deleteButton);
         mEditButton = findViewById(R.id.editButton);
+        dateTimeInput =findViewById(R.id.dateTimeInput);
+        dateTimeInput.setInputType(InputType.TYPE_NULL);
 
         //LISTVIEW
         mTasks = new ArrayList<>();
@@ -76,6 +87,7 @@ public class MainTask extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addTask(v);
+                showDateTimeDialog(dateTimeInput);
             }
         });
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +107,7 @@ public class MainTask extends AppCompatActivity {
     // WHEN CALLED, IT WILL ADD THE TASK TO THE LIST
     private void addItem(View view) {
         //UI
-        EditText input = findViewById(R.id.inputTaskEditText);
+        input = findViewById(R.id.inputTaskEditText);
         String itemText = input.getText().toString();
 
         if(!(itemText.equals(""))) {
@@ -103,6 +115,9 @@ public class MainTask extends AppCompatActivity {
             //update in the data
             patientObject.addAllUnique("arrayToDos",mTasks);
             patientObject.saveInBackground();
+
+
+
             input.setText("");
         }
         else {
@@ -136,7 +151,6 @@ public class MainTask extends AppCompatActivity {
             }
         });
     }
-
 
     // ADDS A TASK TO THE TASKLIST
     private void addTask(View v) {
@@ -202,5 +216,32 @@ public class MainTask extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    // SHOWS THE TIME DATE DIALOG
+    private void showDateTimeDialog(final EditText date_time_in) {
+        final Calendar calendar=Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR,year);
+                calendar.set(Calendar.MONTH,month);
+                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+
+                TimePickerDialog.OnTimeSetListener timeSetListener=new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
+                        calendar.set(Calendar.MINUTE,minute);
+
+                        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yy-MM-dd HH:mm");
+
+                        date_time_in.setText(simpleDateFormat.format(calendar.getTime()));
+                    }
+                };
+                new TimePickerDialog(MainTask.this,timeSetListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),false).show();
+            }
+        };
+        new DatePickerDialog(MainTask.this,dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 }

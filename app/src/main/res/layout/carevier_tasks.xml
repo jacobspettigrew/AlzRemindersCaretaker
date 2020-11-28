@@ -9,6 +9,15 @@
     android:weightSum="10"
     tools:context=".MainTask">
 
+    <EditText
+        android:id="@+id/dateTimeInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:ems="10"
+        android:inputType="none"
+        android:text="Date and Time" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,6 +57,7 @@
         </ListView>
 
     </androidx.cardview.widget.CardView>
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="287dp"
@@ -68,6 +78,8 @@
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
+            android:layout_row="0"
+            android:layout_column="1"
             android:text="Delete" />
 
         <Button

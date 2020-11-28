@@ -55,6 +55,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "com.github.parse-community.Parse-SDK-Android:parse:1.25.0"
+
+    implementation 'com.github.jakebonk:NotifyMe:1.0.1'
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
 }
 
 repositories {
