@@ -83,7 +83,7 @@ public class App extends AppCompatActivity  {
                             startActivity(intent);
                         }
                         else{
-                            Intent intent = new Intent(view.getContext(), Home.class);
+                            Intent intent = new Intent(view.getContext(), MainTask.class);
                             startActivity(intent);
                         }
                     }

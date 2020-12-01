@@ -88,8 +88,8 @@ public class SetId extends AppCompatActivity {
         });
     }
 
-    public void goToHome(View view){
-        Intent intent = new Intent(view.getContext(), Home.class);
+    public void goToTask(View view){
+        Intent intent = new Intent(view.getContext(), MainTask.class);
         startActivity(intent);
     }
 
@@ -99,7 +99,7 @@ public class SetId extends AppCompatActivity {
     }
     public void toastMsgMatchSuccess(View view){
             Toast.makeText(this, "match successfully" , Toast.LENGTH_SHORT).show();
-            goToHome(view);
+            goToTask(view);
     }
     public void toatMessageInvalidId(){
         Toast.makeText(this, "the id is invalid" , Toast.LENGTH_SHORT).show();

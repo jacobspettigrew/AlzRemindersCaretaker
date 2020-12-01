@@ -5,4 +5,18 @@
     <!-- Change the following strings as required -->
     <string name="back4app_app_id">ppUUKGXynkwsUpbZRR6bij1SYvqea45AMYUj70xJ</string>
     <string name="back4app_client_key">ufwwEJ1t3ERojL7sCNQRL1sk7MRFnwpSUBCLE3sQ</string>
+
+    <string name="menu_name_task">Tasks</string>
+    <string name="menu_name_family_reminder">Family Reminder</string>
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="hint_Task">Add new Task here</string>
+    <string name="button_save">Save</string>
+
+    <string name="empty_not_saved">Task not saved because it is empty.</string>
 </resources>
