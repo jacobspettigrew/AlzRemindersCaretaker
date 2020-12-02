@@ -40,7 +40,6 @@ public class App extends AppCompatActivity  {
                 .server(getString(R.string.back4app_server_url))
                 .build()
         );
-
         setContentView(R.layout.activity_main);
         if(ParseUser.getCurrentUser() != null){
             goToMainTask();
