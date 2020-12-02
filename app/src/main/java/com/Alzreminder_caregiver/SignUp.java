@@ -60,7 +60,6 @@ public class SignUp extends  Activity{
 
     //CALL THIS FUNCTION WHEN BUTTON IS CLICKED
     public void onClickedSignedUp(View view){
-
         //UI
         EditText usernameText = findViewById(R.id.username);
         EditText passwordText = findViewById(R.id.password);

@@ -21,10 +21,10 @@
         </activity>
 
         <activity android:name=".SignUp"/>
-        <activity android:name=".Home"/>
         <activity android:name=".Reminder"/>
         <activity android:name=".MainTask"/>
         <activity android:name=".SetId"/>
+        <activity android:name=".NewTaskActivity"/>
 
 
         <meta-data
