@@ -1,5 +1,28 @@
 package com.Alzreminder_caregiver.adapters;
 
+/*
+
+HW 4
+
+Course: CMPT 385 Software Engineering
+Instructor: Dr. Herbert H. Tsang
+Description: <
+     Recyclerview adapter that holds the u.i. and displays
+    >
+Due date: < 2020/12/02 >
+FILE NAME:TaskListAdapter.java
+TEAM NAME: Alzreminders
+Author: < Kyung Cheol Koh >
+Input: < None>
+Output: < Initialize the database  >
+I pledge that I have completed the programming assignment independently.
+I have not copied the code from a student or any source.
+I have not given my code to any student.
+
+Sign here: __Kyung Cheol Koh______
+*/
+
+
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,7 +39,7 @@ import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
     private final LayoutInflater mInflater;
-    private List<Task> mTasks; // Cached copy of Tasks
+    private List<Task> mTasks;
 
     public TaskListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
@@ -32,7 +55,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             Task current = mTasks.get(position);
             holder.TaskItemView.setText(current.getTask());
         } else {
-            // Covers the case of data not being ready yet.
+
             holder.TaskItemView.setText("No Task");
         }
     }
@@ -42,8 +65,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         notifyDataSetChanged();
     }
 
-    // getItemCount() is called many times, and when it is first called,
-    // mTasks has not been updated (means initially, it's null, and we can't return null).
+
+    //
     @Override
     public int getItemCount() {
         if (mTasks != null)
