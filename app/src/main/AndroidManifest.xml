@@ -22,9 +22,9 @@
 
         <activity android:name=".SignUp"/>
         <activity android:name=".Reminder"/>
-        <activity android:name=".MainTask"/>
+        <activity android:name=".TasksActivities.MainTask"/>
         <activity android:name=".SetId"/>
-        <activity android:name=".NewTaskActivity"/>
+        <activity android:name=".TasksActivities.NewTaskActivity"/>
 
 
         <meta-data

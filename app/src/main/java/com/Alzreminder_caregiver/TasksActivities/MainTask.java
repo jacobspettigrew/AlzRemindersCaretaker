@@ -1,34 +1,33 @@
 /*
-HEADER
-FILE NAME: MainTask.java
+
+HW 4
+
+Course: CMPT 385 Software Engineering
+Instructor: Dr. Herbert H. Tsang
+Description: <
+     TO ADD, DELETE AND EDIT TASKS FROM  the Recyclerview
+    >
+Due date: < 2020/12/02 >
+FILE NAME:MainTask.java
 TEAM NAME: Alzreminders
-BUGS:
-PEOPLE WHO WORKED ON: KYUNG CHEOL KOH JACOB PETTIGREW
-PURPOSE:
-        TO ADD, DELETE AND EDIT TASKS FROM THE LISTVIEW
-CODING STANDARD
-    NAME CONVENTION: CAMELCASE STARTING WITH LOWERCASE
-    GLOBAL VARIABLE: CAMELCASE STARTING WITH m
+Author: < Kyung Cheol Koh >
+Input: < None>
+Output: < Initialize the database  >
+I pledge that I have completed the programming assignment independently.
+I have not copied the code from a student or any source.
+I have not given my code to any student.
+
+Sign here: __Kyung Cheol Koh______
 */
 
 
-package com.Alzreminder_caregiver;
-
-
-import android.content.Context;
+package com.Alzreminder_caregiver.TasksActivities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +41,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
+import com.Alzreminder_caregiver.R;
 import com.Alzreminder_caregiver.adapters.TaskListAdapter;
 import com.Alzreminder_caregiver.models.Task;
 import com.Alzreminder_caregiver.viewmodels.TaskViewModel;
@@ -57,18 +57,12 @@ import java.util.ArrayList;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 public class MainTask extends AppCompatActivity {
 
 
     static ArrayList<String> Tasks;
     private SwipeRefreshLayout mSwipeRefresh;
-
-    //DATABASE
-    private ParseObject mPatientObject;
-    static SharedPreferences mPref;
-    SharedPreferences.Editor mEditor;
 
     // UI
     TextView mPatientidTextView;
@@ -82,8 +76,7 @@ public class MainTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        //The method attempts to find Object Id in the database
         findObjectId();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -91,12 +84,11 @@ public class MainTask extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Get a new or existing ViewModel from the ViewModelProvider.
+        // Initialize the TaskViewModel
         mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
 
-        // Add an observer on the LiveData returned by getAlphabetizedTasks.
-        // The onChanged() method fires when the observed data changes and the activity is
-        // in the foreground.
+        // Add an observer on the LiveData  .
+        // The onChanged() method calls when the observed data changes
         mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(@Nullable final List<Task> Tasks) {
@@ -105,6 +97,7 @@ public class MainTask extends AppCompatActivity {
             }
         });
 
+        //FloatingAction Button and onClickListener
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +108,7 @@ public class MainTask extends AppCompatActivity {
         });
 
 
-        //swipe to delete
+        //Swipe Functionality to delete the Task
         ItemTouchHelper helper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0,
                         ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -129,24 +122,25 @@ public class MainTask extends AppCompatActivity {
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder,
                                          int direction) {
+                        //Get the position and send a toast message
                         int position = viewHolder.getAdapterPosition();
                         Task myTask = adapter.getTaskAtPosition(position);
-                        Toast.makeText(MainTask.this, "Deleting " +
+                        Toast.makeText(MainTask.this, "Deleted " +
                                 myTask.getTask(), Toast.LENGTH_LONG).show();
 
-                        // Delete the Task
+                        // Task is deleted
                         mTaskViewModel.deleteTask(myTask);
                         mTaskViewModel.deeletaTaskToDatabse(myTask,position);
                     }
                 });
         helper.attachToRecyclerView(recyclerView);
 
-        //REFRESH LISTENER
+        //REFRESH LISTENER: swipe up to refresh the data
         mSwipeRefresh = findViewById(R.id.swiperefreshItem);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                //Get the tasks from the clound and insert it to the local database
                 mTaskViewModel.getTaskFromDatabse();
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -161,16 +155,15 @@ public class MainTask extends AppCompatActivity {
         });
     }
 
-
-
-
+    //Get the result from the newtaskactivity
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == NEW_Task_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Task Task = new Task(data.getStringExtra(NewTaskActivity.EXTRA_REPLY_Tasks));
+            //Adding a task to the local database
             mTaskViewModel.insert(Task);
             try {
+                //Insert the task to the clound
                 mTaskViewModel.insertToDatabase(Task);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -187,7 +180,6 @@ public class MainTask extends AppCompatActivity {
     //ITERATION TO FIND THE TASKS GIVEN THE UNIQUE ID
     private void findObjectId() {
         Tasks = new ArrayList<>();
-
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Patient");
         query.whereEqualTo("objectId", ParseUser.getCurrentUser().getString("patientId"));
         query.findInBackground(new FindCallback<ParseObject>() {

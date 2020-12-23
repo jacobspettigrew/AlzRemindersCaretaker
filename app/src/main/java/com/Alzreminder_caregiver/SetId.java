@@ -1,15 +1,23 @@
 /*
-HEADER
-FILE NAME:SetId.java
-TEAM NAME: Alzreminders
-BUGS:
-PEOPLE WHO WORKED ON: KYUNG CHEOL KOH
-PURPOSE:
+HW 4
+
+Course: CMPT 385 Software Engineering
+Instructor: Dr. Herbert H. Tsang
+Description: <
     CONNECT UNIQUE ID TO THE USER
     CHECK IF UNIQUE ID IS ALREADY CONNECTED
-CODING STANDARD
-    NAME CONVENTION: CAMELCASE STARTING WITH LOWERCASE
-    GLOBAL VARIABLE: CAMELCASE STARTING WITH m
+    >
+Due date: < 2020/12/02 >
+FILE NAME:SetId.java
+TEAM NAME: Alzreminders
+Author: < Kyung Cheol Koh >
+Input: < None>
+Output: < Initialize the database  >
+I pledge that I have completed the programming assignment independently.
+I have not copied the code from a student or any source.
+I have not given my code to any student.
+
+Sign here: __Kyung Cheol Koh______
 */
 
 
@@ -17,14 +25,13 @@ package com.Alzreminder_caregiver;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.Alzreminder_caregiver.TasksActivities.MainTask;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
